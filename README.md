@@ -1,6 +1,19 @@
-# Algorithmic-equity-index-builder
-A Python/SQL deterministic rules engine for selecting and weighting equity constituents based on quantitative thresholds
-Product Overview: Define the objective. Explain that this tool systematizes bond/equity constituent selection into a scalable, automated pipeline.
-Methodology & Governance: Detail the mathematical logic behind the filtration protocol. Explain why certain multi-factor weightings were used to resolve mathematical distortions or outliers.
-Technical Stack: List Python, yfinance, Pandas, and SQLite (if you add a relational database component later).
-Future Roadmap: List what a V2 would look like (e.g., "Integrate a dynamic SQL decision matrix for historical backtesting").
+# Algorithmic Equity Index Builder
+A deterministic rules engine for selecting and weighting equity constituents based on quantitative thresholds.
+
+## Product Overview
+This project systematizes equity constituent selection into a scalable, automated pipeline. It ingests empirical market data for a basket of AI-sector equities and applies a multi-factor decision matrix to isolate high-performing, risk-adjusted assets, removing qualitative bias from the index creation process.
+
+## Methodology & Governance
+The engine utilizes a strict algorithmic filtration protocol to ensure portfolio stability:
+* **Structural Outlier Removal:** Assets ranking in the top 20% of annualized volatility are systematically eliminated to prevent mathematical distortions in the final index.
+* **Momentum Threshold:** Constituents must demonstrate positive 1-year momentum to qualify for inclusion.
+* **Multi-Factor Weighting:** Surviving assets are assigned weights using an inverse volatility optimization model. This ensures lower-risk constituents receive proportionally higher mathematical weight, stabilizing the overall index yield.
+
+## Technical Stack
+* **Language:** Python
+* **Libraries:** `yfinance` (Data Ingestion), Pandas (DataFrames & Logic), NumPy (Statistical Math)
+
+## Future Roadmap
+* Integrate a dynamic SQL decision matrix to abstract the filtration logic into a relational database schema.
+* Build a variance attribution diagnostic tool to backtest the yield against standard market benchmarks (e.g., QQQ).
